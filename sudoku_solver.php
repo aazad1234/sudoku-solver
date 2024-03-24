@@ -8,15 +8,11 @@ class SudokuSolver {
     }
 
     public function solve() {
-        print_r("<pre>");
-        // print_r($this->board);
         return $this->solveSudoku($this->board);
     }
 
     private function solveSudoku(&$board) {
         $emptyCell = $this->findEmptyCell($board);
-        print_r("<pre>");
-        // print_r($emptyCell);
         if ($emptyCell === null) {
             return true; // Puzzle solved
         }

@@ -1,6 +1,6 @@
 <?php
 
-class SudokuSolver {
+class SudokuSolver_OLD {
     private $board;
 
     public function __construct($board) {
@@ -18,7 +18,6 @@ class SudokuSolver {
         }
 
         list($row, $col) = $emptyCell;
-        print_r(list($row, $col) = $emptyCell);
 
         for ($num = 1; $num <= 9; $num++) {
             if ($this->isSafe($board, $row, $col, $num)) {
@@ -82,5 +81,21 @@ class SudokuSolver {
     public function getBoard() {
         return $this->board;
     }
+
+    public function isBoardValid() {
+        for ($r=0;$r<9;$r++) {
+            for ($c=0;$c<9;$c++) {
+                $v = $this->board[$r][$c];
+                if ($v == 0) continue;
+                $this->board[$r][$c] = 0;
+                if (!$this->isSafe($this->board, $r, $c, $v)) {
+                    return false;
+                }
+                $this->board[$r][$c] = $v;
+            }
+        }
+        return true;
+    }
+
 }
 ?>
